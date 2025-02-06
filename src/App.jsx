@@ -2,6 +2,7 @@ import axios from "axios";
 import "./App.css";
 
 import { useState } from "react";
+import { useEffect } from "react";
 
 function App() {
   let [Inputdata, setInputtData] = useState("Barcelona");
@@ -18,12 +19,17 @@ function App() {
         `http://api.openweathermap.org/data/2.5/weather?q=${Inputdata}&appid=0308dd6d8b07c047c7f2086be55824de`
       );
       setData(response.data);
+      console.log(response.data);
     } catch (error) {
       alert("City not found or API issue.");
       console.error(error);
     }
     setInputtData("");
   }
+  useEffect(() => {
+    fetchWeather();
+  }, []);
+
   function handleKeyPress(e) {
     if (e.key === "Enter") {
       fetchWeather();
@@ -56,26 +62,26 @@ function App() {
       <div className="container">
         <div className="top">
           <div className="location">
-            <p>{data.name}</p>
+            <p>{data?.name}</p>
           </div>
           <div className="temp">
-            <h1 className="font-bold ">{Kalvin(data.main.temp)}°C</h1>
+            <h1 className="font-bold ">{Kalvin(data?.main?.temp)}°C</h1>
           </div>
           <div className="description">
-            <p>{data.weather[0].description}</p>
+            <p>{data?.weather[0]?.description}</p>
           </div>
         </div>
         <div className="bootom">
           <div className="feels">
-            <p>{Kalvin(data.main.feels_like)}°C</p>
+            <p>{Kalvin(data?.main?.feels_like)}°C</p>
             <p className="bold">Feels like</p>
           </div>
           <div className="humidity">
-            <p>{data.main.humidity} %</p>
+            <p>{data?.main?.humidity} %</p>
             <p className="bold">Humidity</p>
           </div>
           <div className="wind">
-            <p>{data.wind.speed} MP/H</p>
+            <p>{data?.wind?.speed} MP/H</p>
             <p className="bold">Windspeed</p>
           </div>
         </div>
