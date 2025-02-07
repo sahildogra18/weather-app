@@ -68,7 +68,7 @@ function App() {
             <h1 className="font-bold ">{Kalvin(data?.main?.temp)}°C</h1>
           </div>
           <div className="description">
-            <p>{data?.weather?.description}</p>
+            <p>{data?.weather?.[0]?.description || "Loading..."}</p>
           </div>
         </div>
         <div className="bootom">
