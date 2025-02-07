@@ -52,10 +52,10 @@ function App() {
         />
       </div>
       <button
-        className="rounded-full border-s-black bg-[rgba(255,255,255,.2)] p-5  ml-[170px] mt-3 font-bold   "
+        className="rounded-full border-s-black bg-[rgba(255,255,255,.2)] p-5  ml-[140px] mt-3 font-bold   "
         onClick={fetchApiData}
       >
-        Click
+        Search Here
       </button>
       <div className="container">
         <div className="top">
