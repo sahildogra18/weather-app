@@ -16,7 +16,7 @@ function App() {
 
     try {
       let response = await axios.get(
-        `http://api.openweathermap.org/data/2.5/weather?q=${Inputdata}&appid=0308dd6d8b07c047c7f2086be55824de`
+        `https://api.openweathermap.org/data/2.5/weather?q=${Inputdata}&appid=0308dd6d8b07c047c7f2086be55824de`
       );
       setData(response.data);
       console.log(response.data);
