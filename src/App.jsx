@@ -6,33 +6,32 @@ import { useEffect } from "react";
 
 function App() {
   let [Inputdata, setInputtData] = useState("Barcelona");
-  let [data, setData] = useState("");
+  let [data, setData] = useState({});
 
-  async function fetchWeather() {
-    if (Inputdata == "") {
-      alert("Please enter a valid location.");
-      return;
-    }
-
-    try {
-      let response = await axios.get(
+  let fetchApiData = async () => {
+    axios
+      .get(
         `https://api.openweathermap.org/data/2.5/weather?q=${Inputdata}&appid=0308dd6d8b07c047c7f2086be55824de`
-      );
-      setData(response.data);
-      console.log(response.data);
-    } catch (error) {
-      alert("City not found or API issue.");
-      console.error(error);
-    }
-    setInputtData("");
-  }
+      )
+      .then((response) => {
+        setData(response.data);
+        console.log(response.data);
+        console.log("m aa gya");
+        setInputtData("");
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("ApI response failed or failed to find city");
+        setInputtData("");
+      });
+  };
   useEffect(() => {
-    fetchWeather();
+    fetchApiData();
   }, []);
 
   function handleKeyPress(e) {
     if (e.key === "Enter") {
-      fetchWeather();
+      fetchApiData();
     }
   }
   function Kalvin(kalvinData) {
@@ -51,14 +50,13 @@ function App() {
             setInputtData(e.target.value);
           }}
         />
-
-        <button
-          className="rounded-full border-s-black bg-[rgba(255,255,255,.2)] p-2"
-          onClick={fetchWeather}
-        >
-          Click
-        </button>
       </div>
+      <button
+        className="rounded-full border-s-black bg-[rgba(255,255,255,.2)] p-5  ml-[170px] mt-3 font-bold   "
+        onClick={fetchApiData}
+      >
+        Click
+      </button>
       <div className="container">
         <div className="top">
           <div className="location">
