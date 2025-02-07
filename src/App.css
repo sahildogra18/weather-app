@@ -56,9 +56,10 @@ h1{
   transform-origin: 0 0;
   transform: rotate(270deg);
   p{
-    font-size: 40px;
+    font-size: 30px;
     color: whitesmoke;
     font: bold;
+    margin-top: 20px;
   }
 }
 
