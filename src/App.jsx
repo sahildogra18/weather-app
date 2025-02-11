@@ -69,7 +69,7 @@ function App() {
             <p>{data?.weather?.[0]?.description || "Loading..."}</p>
           </div>
         </div>
-        <div className="bootom">
+        <div className="bootom flex gap-2 p-1">
           <div className="feels">
             <p>{Kalvin(data?.main?.feels_like)}°C</p>
             <p className="bold">Feels like</p>
